@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import { Grid } from "react-bootstrap";
 
+import Mensaje from "./mensaje";
+import FormNombre from "./formNombre";
+
 export class App extends Component {
+  state = { nombre: this.props.nombre };
+
+  manejarNombre = nombre => {
+    this.setState({ nombre: nombre });
+  };
+
   render() {
-    const { nombre, mensaje } = this.props; //declarando constantes
+    const { nombre } = this.state;
+    const { mensaje } = this.props; //declarando constantes
     return (
       <Grid>
-        <h1>Hola {nombre}!</h1>
-        {mensaje}
+        <Mensaje nombre={nombre} mensaje={mensaje} />
+        <FormNombre nuevoNombre={this.manejarNombre} />
       </Grid>
     );
   }
